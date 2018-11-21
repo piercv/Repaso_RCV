@@ -1,0 +1,46 @@
+@model Producto
+
+<div class="container body_text">
+
+    <h2>Nuevo Producto</h2>
+    <hr/>
+
+    @if (TempData["resultado"] != null && TempData["resultado"].ToString() == "1") 
+    {
+        <div>
+            El Poducto fue registrado!
+        </div>
+    }
+
+    <form asp-action="NuevoProducto" method="post">
+        @Html.ValidationSummary()
+
+        <div class="form-group">
+            <label asp-for="Nombre"></label>
+            <input asp-for="Nombre" class="form-control" type="text"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Precio"></label>
+            <input asp-for="Precio" class="form-control" type="decimal" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Foto"></label>
+            <input asp-for="Foto" class="form-control" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Tienda"></label>
+            <select asp-for="TiendaId" class="form-control" asp-items="@ViewBag.Tiendas"></select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Categoria"></label>
+            <select asp-for="CategoriaId" class="form-control" asp-items="@ViewBag.Categorias">
+                <option value="">Sin categoría</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
